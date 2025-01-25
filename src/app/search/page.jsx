@@ -1,37 +1,50 @@
+"use client";
 
 import "./search.css"
 
+import { useState } from "react";
+import Link from "next/link"
 
-const applicants = [
-  {
-    id: 1,
-    username: "Connor McDavid",
-    university: "Salisbury University",
-    location: "DC Metro Area",
-  },
-  {
-    id: 2,
-    username: "Nathan MacKinnon",
-    university: "Georgetown University",
-    location: "New York Metro Area",
-  },
-  {
-    id: 3,
-    username: "Auston Matthews",
-    university: "University of Maryland",
-    location: "Salisbury University",
-    location: "Los Angeles Metro Area",
-  },
-  {
-    id: 4,
-    username: "Alexander Ovechkin",
-    university: "University of Maryland Baltimore County",
-    location: "Salisbury University",
-    location: "New York Metro Area",
-  }
-]
+
 
 export default function SearchPage() {
+  const [applicants, setApplicants] = useState([]);
+
+  
+
+  const handleClick = () => {
+    let newApplicants = [
+      {
+        id: 1,
+        username: "Omniladder",
+        university: "Salisbury University",
+        location: "DC Metro Area",
+      },
+      {
+        id: 2,
+        username: "cscx1",
+        university: "Georgetown University",
+        location: "New York Metro Area",
+      },
+      {
+        id: 3,
+        username: "Piggs24",
+        university: "University of Maryland",
+        location: "Salisbury University",
+        location: "Los Angeles Metro Area",
+      },
+      {
+        id: 4,
+        username: "Spenny",
+        university: "University of Maryland Baltimore County",
+        location: "Salisbury University",
+        location: "New York Metro Area",
+      }
+    ]
+    setApplicants(newApplicants);
+  };
+  
+
   return (
     <div>
       <div className="SearchRegion">
@@ -42,7 +55,7 @@ export default function SearchPage() {
         
         <div className="SearchBarDiv">
             <input type="text" className="search-bar" placeholder="Search for Resumes..."></input>
-            <button className="search-button">Search</button>
+            <button className="search-button" onClick={handleClick}>Search</button>
         </div>
         </center>
       </div>
@@ -58,7 +71,9 @@ export default function SearchPage() {
                 <div className="applicantInfo">{applicant.location}</div>
               </div>
               
-                <button className="readmore">Read More</button>
+              <Link className="readmore" href={{ pathname: "/search", query: { data: JSON.stringify(applicant) }}}>
+                  Read More
+              </Link>
             </div>
           ))}
           </div>
