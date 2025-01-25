@@ -10,12 +10,13 @@ RUN apk update && apk upgrade && \
     g++ \
     python3
 
-# Install dependencies (with Windows-friendly file permissions)
-COPY --chmod=0755 package*.json ./
-RUN npm install
+# Install dependencies
+COPY package*.json ./
+RUN chmod -R 755 . && npm install
 
-# Copy the rest of the code (with Windows-friendly file permissions)
-COPY --chmod=0755 . .
+# Copy the rest of the code
+COPY . .
+RUN chmod -R 755 .
 
 # Expose port 3000
 EXPOSE 3000
