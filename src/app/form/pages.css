@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background: rgb(0,58,155)
+}
+
+.container {
+    position: relative;
+    max-width: 700px;
+    width: 100%;
+    background: #fff;
+    padding: 70px 30px 30px 30px; /* Added top padding */
+    border-radius: 5px;
+}
+
+.container .title {
+    font-size: 25px;
+    font-weight: 500;
+    position: absolute; /* Absolute positioning for flexibility */
+    top: 10px; /* Adjust distance from the top */
+    left: 20px; /* Adjust distance from the left */
+    margin: 0;
+}
+
+.container .title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 2px; /* Spacing between underline and the title */
+    height: 3px;
+    width: 30px;
+    background: #4b494b;
+}
+
+
+.container form .user-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    gap: 20px; /* Space between columns and rows */
+    margin-bottom: 20px;
+}
+
+form .user-details .input-box {
+    width: 100%; /* Let the input box take full width inside the grid cell */
+}
+
+.user-details .input-box .details {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.user-details .input-box input {
+    height: 45px;
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 15px;
+    font-size: 16px;
+}
+
+.user-details .input-box input:focus,
+.user-details .input-box input:valid {
+    border-color: #9b59b6;
+}
+
+form .button {
+    height: 45px;
+    margin: 30px 0;
+    text-align: center;
+}
+
+form .button input {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    color: #fff;
+    border: none;
+    background: rgb(0,58,155);
+    font-size: 16px;
+    border-radius: 5px; /* Make it rectangular */
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+form .button input:hover {
+    background: rgb(27, 26, 26)  /* Darker shade on hover */
+}
+
+form .button input:active {
+    background: rgb(27, 26, 26) /* Even darker shade when clicked */
+}
+
+/* Hide the default file input */
+.input-box input[type="file"] {
+    display: none;
+  }
+  
+  /* Style the label to look like a button */
+  .upload-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: rgb(0,58,155);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    transition: background 0.3s ease;
+  }
+  
+  .upload-btn:hover {
+   background: rgb(27, 26, 26)
+  }
+  
