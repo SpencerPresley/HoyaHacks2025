@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
+.search-button {
+  background-color: rgb(0, 58, 155);
+  width: 7vw;
+  height: 3.5vw;
+  border-radius: 0.5vw;
+  color: white;
+  font-family: "Noto Sans", serif;
+}
+
+.search-bar {
+  border-width: 2px;
+  border-color: black;
+  border-radius: 0.5vw;
+  height: 3.5vw;
+  width: 35vw;
+  margin-right: 1vw;
+  font-size: 2vw;
+  font-family: "Noto Sans", serif;
+}
+
+.SearchBarHeader {
+  font-size: 2vw;
+  font-family: "Noto Sans", serif;
+}
