@@ -1,0 +1,4 @@
+chaincomposer==0.1.8
+langchain-community==0.3.5
+reportlab==4.2.5
+faiss-cpu
