@@ -11,8 +11,15 @@ def get_pdf_paths():
 
 def load_pdfs():
     loaded_docs = []
-    loader = PyMuPDFLoader()
     pdf_paths = get_pdf_paths()
     for pdf_path in pdf_paths:
-        loaded_docs.append(loader.load(pdf_path))
+        loader = PyMuPDFLoader(pdf_path)
+        loaded_docs.append(loader.load())
     return loaded_docs
+
+if __name__ == "__main__":
+    docs = load_pdfs()
+    for doc in docs:
+        print(f"Page Contents:\n\n{doc.page_content}\n\n")
+        print(f"Metadata:\n\n{doc.metadata}\n\n")
+        print("\n\n")
