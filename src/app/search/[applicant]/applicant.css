@@ -1,0 +1,99 @@
+.backgroundDiv {
+  position: fixed; /* Ensures it stays in place relative to the viewport */
+  top: 0;
+  left: 0;
+  width: 100vw; /* Full width of the viewport */
+  height: 100vh; /* Full height of the viewport */
+  margin: 0;
+  z-index: -1; /* Sends it behind the content */
+  background: linear-gradient(
+    to bottom,
+    rgba(3, 43, 114, 0.8),
+    rgba(46, 76, 129, 0.8)
+  );
+}
+
+.appCard {
+  position: relative;
+  height: 45vw;
+  width: 70vw;
+  border-width: 2px;
+  border-color: rgb(37, 37, 37);
+  border-radius: 0.5vw;
+  margin-top: 2vw;
+  display: flex;
+  background-color: white;
+}
+
+.applicantUser {
+  font-size: 4vw;
+  font-family: "Noto Sans", serif;
+  color: rgb(58, 57, 57);
+  margin-left: 4vw;
+  margin-top: 1vw;
+}
+
+.applicantInfo {
+  color: rgb(102, 102, 102);
+  font-size: 1.2vw;
+  margin-left: 4vw;
+}
+
+.buttonContainer {
+  right: 0;
+  position: absolute;
+}
+
+.buttonClass {
+  background-color: rgb(0, 58, 155);
+  color: white;
+  font-size: 1.4vw;
+  height: 7vw;
+  width: 13vw;
+  border-radius: 1vw;
+  margin-right: 0.5vw;
+  margin-top: 1vw;
+  cursor: pointer;
+  justify-content: flex-end;
+  right: 0;
+  margin-right: 3vw;
+}
+
+.buttonClass:hover {
+  background-color: white; /* Change background to white on hover */
+  color: rgb(0, 58, 155); /* Optionally change text color to match background */
+  border-width: 0.2vw;
+  border-color: rgb(0, 58, 155);
+}
+
+.questionDivs {
+  display: grid;
+  gap: 2vw;
+  position: absolute;
+  grid-template-columns: repeat(3, 1fr);
+  bottom: 0;
+  margin-bottom: 1vw;
+  margin-left: 2vw;
+}
+
+.questionCard {
+  height: 28vw;
+  width: 20vw;
+  border-width: 2px;
+  border-color: rgb(102, 102, 102);
+  border-radius: 2vw;
+}
+
+.questionContainer {
+  gap: 2vw;
+}
+
+.questionDiv {
+  margin-top: 0.2vw;
+  text-align: justify;
+  width: 15vw;
+}
+
+.questionTitle {
+  width: 15vw;
+}

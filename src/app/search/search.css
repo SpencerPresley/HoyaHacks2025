@@ -1,5 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: white;
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+}
+
 .search-button {
   background-color: rgb(0, 58, 155);
   border-width: 2px;
