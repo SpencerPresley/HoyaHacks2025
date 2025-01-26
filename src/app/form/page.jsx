@@ -1,206 +1,155 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Textarea } from "@/components/ui/textarea";
+import { Upload } from "lucide-react";
 
-export default function Form() {
-  const [formData, setFormData] = useState({
-    fullName: "",
-    linkedin: "",
-    github: "",
-    projects: "",
-    phone: "",
-    email: "",
-    education: "",
-    experience: "",
-  });
-  const [uploadedPDF, setUploadedPDF] = useState(null);
+export default function TailorResumePage() {
+  const [file, setFile] = useState(null);
+  const [jobDescription, setJobDescription] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const fileInputRef = useRef(null);
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+  const handleDragEnter = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(true);
   };
 
-  const handlePDFUpload = (event) => {
-    const file = event.target.files[0];
-    if (file && file.type === "application/pdf") {
-      setUploadedPDF(file);
-    } else {
-      alert("Please upload a valid PDF file.");
+  const handleDragLeave = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+
+    const files = e.dataTransfer.files;
+    if (files.length) {
+      validateAndSetFile(files[0]);
     }
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const validateAndSetFile = (file) => {
+    if (file.type !== "application/pdf") {
+      setError("Please upload a PDF file");
+      return;
+    }
+    setFile(file);
+    setError(null);
+  };
 
-    if (!uploadedPDF) {
-      alert("Please upload a PDF before submitting.");
+  const handleFileChange = (e) => {
+    if (e.target.files.length) {
+      validateAndSetFile(e.target.files[0]);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!file || !jobDescription.trim()) {
+      setError("Please provide both a resume and job description");
       return;
     }
 
-    const dataToSend = new FormData();
-    Object.keys(formData).forEach((key) => {
-      dataToSend.append(key, formData[key]);
-    });
-    dataToSend.append("resume", uploadedPDF);
+    setIsLoading(true);
+    setError(null);
 
     try {
-      const response = await fetch("http://localhost:5000/submit", {
-        method: "POST",
-        body: dataToSend,
-      });
-
-      if (response.ok) {
-        const result = await response.json();
-        alert("Form submitted successfully!");
-        console.log(result);
-      } else {
-        alert("Failed to submit the form.");
-      }
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      alert("An error occurred while submitting the form.");
+      // TODO: Implement the API call to tailor the resume
+      // const formData = new FormData();
+      // formData.append('resume', file);
+      // formData.append('jobDescription', jobDescription);
+      // const response = await fetch('/api/tailor-resume', ...);
+      
+      console.log("Will implement resume tailoring endpoint");
+    } catch (err) {
+      setError("Failed to process your request. Please try again.");
+      console.error(err);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      
       <div className="container mx-auto px-4 py-8">
-        <Card>
+        <Card className="max-w-4xl mx-auto">
           <CardHeader>
-            <CardTitle className="text-2xl">Registration</CardTitle>
+            <CardTitle className="text-2xl">Tailor Your Resume</CardTitle>
+            <CardDescription>
+              Upload your resume and provide a job description to get a tailored version of your resume and a matching cover letter.
+            </CardDescription>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div className="space-y-2">
-                  <Label htmlFor="fullName">Full Name</Label>
-                  <Input
-                    id="fullName"
-                    name="fullName"
-                    placeholder="Enter your name"
-                    value={formData.fullName}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="linkedin">LinkedIn</Label>
-                  <Input
-                    id="linkedin"
-                    name="linkedin"
-                    placeholder="Enter your LinkedIn"
-                    value={formData.linkedin}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="github">GitHub</Label>
-                  <Input
-                    id="github"
-                    name="github"
-                    placeholder="Enter your GitHub"
-                    value={formData.github}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="projects">Projects</Label>
-                  <Input
-                    id="projects"
-                    name="projects"
-                    placeholder="Enter your projects"
-                    value={formData.projects}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="phone">Phone</Label>
-                  <Input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    placeholder="Enter your phone #"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    placeholder="Enter your email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="education">Education</Label>
-                  <Input
-                    id="education"
-                    name="education"
-                    placeholder="Enter your education"
-                    value={formData.education}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="experience">Experience</Label>
-                  <Input
-                    id="experience"
-                    name="experience"
-                    placeholder="Enter your experience"
-                    value={formData.experience}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="resume">Resume Attachment</Label>
-                  <input
-                    type="file"
-                    accept=".pdf"
-                    id="resume"
-                    name="resume"
-                    onChange={handlePDFUpload}
-                    className="block w-full text-sm text-slate-500
-                      file:mr-4 file:py-2 file:px-4
-                      file:rounded-md file:border-0
-                      file:text-sm file:font-semibold
-                      file:bg-primary file:text-primary-foreground
-                      hover:file:bg-primary/90"
-                    required
-                  />
-                </div>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Resume Upload Section */}
+              <div
+                className={`border-2 border-dashed rounded-lg p-8 text-center ${
+                  isDragging ? "border-primary bg-primary/10" : "border-muted"
+                } transition-colors duration-200 cursor-pointer`}
+                onDragEnter={handleDragEnter}
+                onDragLeave={handleDragLeave}
+                onDragOver={handleDragOver}
+                onDrop={handleDrop}
+                onClick={() => fileInputRef.current?.click()}
+              >
+                <input
+                  type="file"
+                  ref={fileInputRef}
+                  onChange={handleFileChange}
+                  accept=".pdf"
+                  className="hidden"
+                />
+                <Upload className="w-10 h-10 mx-auto mb-4 text-muted-foreground" />
+                <p className="text-muted-foreground mb-2">
+                  {file ? file.name : "Drop your resume here or click to browse"}
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  Supports PDF files only
+                </p>
               </div>
 
-              <div className="flex justify-end">
-                <Button type="submit" size="lg" className="px-8">
-                  Register
-                </Button>
+              {/* Job Description Input */}
+              <div className="space-y-2">
+                <label htmlFor="jobDescription" className="text-sm font-medium">
+                  Job Description
+                </label>
+                <Textarea
+                  id="jobDescription"
+                  value={jobDescription}
+                  onChange={(e) => setJobDescription(e.target.value)}
+                  placeholder="Paste the job description here..."
+                  className="min-h-[200px]"
+                />
               </div>
+
+              {error && (
+                <p className="text-destructive text-sm">{error}</p>
+              )}
+
+              <Button
+                type="submit"
+                className="w-full"
+                size="lg"
+                disabled={isLoading}
+              >
+                {isLoading ? "Processing..." : "Tailor Resume"}
+              </Button>
             </form>
           </CardContent>
         </Card>

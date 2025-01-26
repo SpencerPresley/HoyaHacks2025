@@ -1,7 +1,10 @@
+'use client';
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
+import { Search, Upload, FileText } from "lucide-react";
 
 export default function Home() {
   return (
@@ -14,16 +17,27 @@ export default function Home() {
             Find Your Perfect Match with AI-Powered Resume Search
           </h1>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Our platform uses advanced AI to match job descriptions with the most relevant resumes, 
-            making hiring easier and more efficient than ever.
+            Your intelligent resume companion. Search through resumes, upload your own, or tailor your resume to specific job descriptions.
           </p>
           <div className="flex justify-center gap-4">
-            <Link href="/search">
-              <Button size="lg" className="h-11 px-8">Start Searching</Button>
-            </Link>
-            <Link href="/form">
-              <Button size="lg" variant="outline" className="h-11 px-8">Create Resume</Button>
-            </Link>
+            <Button asChild size="lg" className="bg-gradient-to-r from-blue-600 to-indigo-600">
+              <Link href="/search" className="flex items-center space-x-2">
+                <Search className="h-5 w-5" />
+                <span>Search Resumes</span>
+              </Link>
+            </Button>
+            <Button asChild size="lg" variant="outline">
+              <Link href="/upload" className="flex items-center space-x-2">
+                <Upload className="h-5 w-5" />
+                <span>Upload Resume</span>
+              </Link>
+            </Button>
+            <Button asChild size="lg" variant="outline">
+              <Link href="/tailor" className="flex items-center space-x-2">
+                <FileText className="h-5 w-5" />
+                <span>Tailor Resume</span>
+              </Link>
+            </Button>
           </div>
         </section>
 

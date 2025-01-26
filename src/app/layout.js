@@ -1,28 +1,26 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { config } from '@fortawesome/fontawesome-svg-core';
-import '@fortawesome/fontawesome-svg-core/styles.css';
+import { ThemeProvider } from "@/components/theme-provider";
 
-// Prevent FA from adding its CSS since we imported it above
-config.autoAddCss = false;
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "ResumeAI - AI-Powered Resume Search",
-  description: "Find the perfect match with AI-powered resume search",
+  title: "ResumeAI",
+  description: "AI-powered resume search and tailoring",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} min-h-screen bg-background font-sans antialiased`}>
-        <main className="relative flex min-h-screen flex-col">
+      <body className={inter.className}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           {children}
-        </main>
+        </ThemeProvider>
       </body>
     </html>
   );

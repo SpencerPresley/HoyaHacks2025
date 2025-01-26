@@ -11,6 +11,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { usePathname } from "next/navigation";
+import { Search, Upload, FileText } from "lucide-react";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -64,55 +66,67 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-14 items-center">
-        <div className="mr-4 flex">
-          <Link href="/" className="mr-6 flex items-center space-x-2">
-            <span className="font-bold inline-block">ResumeAI</span>
+      <div className="container flex h-16 items-center px-6">
+        <div className="mr-4 flex items-center">
+          <Link href="/" className="mr-10 flex items-center space-x-2">
+            <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">ResumeAI</span>
           </Link>
-          <nav className="flex items-center space-x-6 text-sm font-medium">
+          <nav className="flex items-center space-x-8 text-sm font-medium">
             <Link
               href="/search"
-              className={`transition-colors hover:text-foreground/80 ${
+              className={`flex items-center space-x-2 transition-colors hover:text-foreground/80 ${
                 pathname === "/search" ? "text-foreground" : "text-foreground/60"
               }`}
             >
-              Search
+              <Search className="h-4 w-4" />
+              <span>Search</span>
             </Link>
             <Link
-              href="/form"
-              className={`transition-colors hover:text-foreground/80 ${
-                pathname === "/form" ? "text-foreground" : "text-foreground/60"
+              href="/upload"
+              className={`flex items-center space-x-2 transition-colors hover:text-foreground/80 ${
+                pathname === "/upload" ? "text-foreground" : "text-foreground/60"
               }`}
             >
-              Create Resume
+              <Upload className="h-4 w-4" />
+              <span>Upload</span>
+            </Link>
+            <Link
+              href="/tailor"
+              className={`flex items-center space-x-2 transition-colors hover:text-foreground/80 ${
+                pathname === "/tailor" ? "text-foreground" : "text-foreground/60"
+              }`}
+            >
+              <FileText className="h-4 w-4" />
+              <span>Tailor Resume</span>
             </Link>
           </nav>
         </div>
-        <div className="flex flex-1 items-center justify-end space-x-2">
-          <nav className="flex items-center space-x-2">
+        <div className="flex flex-1 items-center justify-end space-x-4">
+          <ThemeToggle />
+          <nav className="flex items-center space-x-4">
             {user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="h-8 w-8 rounded-full">
-                    <Avatar className="h-8 w-8">
-                      <AvatarFallback>
+                  <Button variant="ghost" className="h-9 w-9 rounded-full">
+                    <Avatar className="h-9 w-9 border-2 border-primary/10">
+                      <AvatarFallback className="bg-primary/5 text-sm font-medium">
                         {user.username.charAt(0).toUpperCase()}
                       </AvatarFallback>
                     </Avatar>
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuItem onClick={handleSignOut}>
+                <DropdownMenuContent align="end" className="w-40">
+                  <DropdownMenuItem onClick={handleSignOut} className="text-red-600">
                     Sign out
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
               <>
-                <Button variant="ghost" asChild>
+                <Button variant="ghost" size="sm" asChild>
                   <Link href="/auth">Sign in</Link>
                 </Button>
-                <Button asChild>
+                <Button size="sm" className="bg-gradient-to-r from-blue-600 to-indigo-600" asChild>
                   <Link href="/auth/signup">Sign up</Link>
                 </Button>
               </>

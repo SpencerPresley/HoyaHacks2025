@@ -112,7 +112,7 @@ export default function SignUpPage() {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gray-50 grid place-content-center p-4">
+      <div className="min-h-screen bg-gray-50 dark:bg-black grid place-content-center p-4">
         <Card className="w-[400px]">
           <CardHeader>
             <CardTitle className="text-2xl font-bold text-center">Create Account</CardTitle>

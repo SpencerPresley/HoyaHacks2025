@@ -7,7 +7,30 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 export default function ApplicantPage() {
     const searchParams = useSearchParams();
     const data = searchParams.get("data");
-    const applicant = data ? JSON.parse(decodeURIComponent(data)) : null;
+    let applicant = null;
+    
+    try {
+        applicant = data ? JSON.parse(data) : null;
+    } catch (error) {
+        console.error("Failed to parse applicant data:", error);
+    }
+
+    if (!applicant) {
+        return (
+            <div className="min-h-screen bg-background">
+                <Navbar />
+                <div className="container mx-auto px-4 py-8">
+                    <Card>
+                        <CardContent className="p-6">
+                            <p className="text-center text-muted-foreground">
+                                Could not load applicant details. Please try again.
+                            </p>
+                        </CardContent>
+                    </Card>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="min-h-screen bg-background">
@@ -22,7 +45,9 @@ export default function ApplicantPage() {
                         {/* Header Section */}
                         <div className="mb-8">
                             <h1 className="text-4xl font-bold text-gray-700 mb-2">
-                                {applicant.username}
+                                <span className="dark:bg-gradient-to-r dark:from-blue-600 dark:to-indigo-600 dark:bg-clip-text dark:text-transparent">
+                                    Candidate
+                                </span>
                             </h1>
                             <p className="text-gray-500">{applicant.university}</p>
                             <p className="text-gray-500">{applicant.location}</p>
