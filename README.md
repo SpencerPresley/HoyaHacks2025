@@ -10,6 +10,13 @@
 
 ---
 
+## Features
+
+- Tailored Resume Generator
+- Application and Resume Storage
+- Recruiter Query Platform
+- User Signup and Login
+
 ## **About the Team**
 
 We are a passionate group of 4 students from **Salisbury University**!  
