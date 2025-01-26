@@ -10,7 +10,7 @@
 
 ---
 
-## Features
+## **Features**
 
 - Tailored Resume Generator
 - Application and Resume Storage
