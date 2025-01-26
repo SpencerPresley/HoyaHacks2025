@@ -15,6 +15,7 @@
 - Tailored Resume Generator
 - Application and Resume Storage
 - Recruiter Query Platform
+- Builtin User Chatbot
 - User Signup and Login
 
 ## **About the Team**
