@@ -1,0 +1,218 @@
+%-------------------------
+% Resume in Latex
+% Author : Jake Gutierrez
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+% \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+%   \textbf{\href{http://sourabhbajaj.com/}{\Large Sourabh Bajaj}} & Email : \href{mailto:sourabh@sourabhbajaj.com}{sourabh@sourabhbajaj.com}\\
+%   \href{http://sourabhbajaj.com/}{http://www.sourabhbajaj.com} & Mobile : +1-123-456-7890 \\
+% \end{tabular*}
+
+\begin{center}
+    \textbf{\Huge \scshape {name}} \\ \vspace{1pt}
+    \small {phone} $|$ \href{mailto:{email}}{\underline{{email}}} $|$ 
+    \href{https://linkedin.com/in/...}{\underline{{linkedin}}} $|$
+    \href{https://github.com/...}{\underline{{github}}}
+\end{center}
+
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {university_name1}{{university_city1}{university_state1}}
+      {{major_degree_name1}{minor_degree_name1}}{{start_date1} -- {end_date1}}
+    \resumeSubheading
+      {university_name2}{{university_city2}{university_state2}}
+      {{major_degree_name2}{minor_degree_name2}}{{start_date2} -- {end_date2}}
+  \resumeSubHeadingListEnd
+
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {work_title1}{{work_start_date1} -- {work_end_date1}}
+      {work_company1}{{work_city1}{work_state1}}
+      \resumeItemListStart
+        \resumeItem{work_description_one1}
+        \resumeItem{work_description_one2}
+        \resumeItem{work_description_one3}
+      \resumeItemListEnd
+      
+% -----------Multiple Positions Heading-----------
+%    \resumeSubSubheading
+%     {Software Engineer I}{Oct 2014 - Sep 2016}
+%     \resumeItemListStart
+%        \resumeItem{Apache Beam}
+%          {Apache Beam is a unified model for defining both batch and streaming data-parallel processing pipelines}
+%     \resumeItemListEnd
+%    \resumeSubHeadingListEnd
+%-------------------------------------------
+
+    \resumeSubheading
+      {work_title2}{{work_start_date2} -- {work_end_date2}}
+      {work_company2}{{work_city2}{work_state2}}
+      \resumeItemListStart
+        \resumeItem{work_description_two1}
+        \resumeItem{work_description_two2}
+        \resumeItem{work_description_two3}
+    \resumeItemListEnd
+
+    \resumeSubheading
+      {work_title3}{{work_start_date3} -- {work_end_date3}}
+      {work_company3}{{work_city3}{work_state3}}
+      \resumeItemListStart
+        \resumeItem{work_description_three1}
+        \resumeItem{work_description_three2}
+        \resumeItem{work_description_three3}
+        \resumeItem{work_description_three4}
+        \resumeItem{work_description_three5}
+        \resumeItem{work_description_three6}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{{project_1_name}} $|$ \emph{{project_1_technologies}}}{{project1_starda}{project1_endda}}
+          \resumeItemListStart
+            \resumeItem{p1_bullet1}
+            \resumeItem{p1_bullet2}
+            \resumeItem{p1_bullet3}
+            \resumeItem{p1_bullet4}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{{project_2_name}} $|$ \emph{{project_2_technologies}}}{{project2_starda}{project2_endda}}
+          \resumeItemListStart
+            \resumeItem{p2_bullet1}
+            \resumeItem{p2_bullet2}
+            \resumeItem{p2_bullet3}
+            \resumeItem{p2_bullet4}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+
+
+%
+%-----------PROGRAMMING SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{language_names} \\
+     \textbf{Frameworks}{framework_names} \\
+     \textbf{Developer Tools}{dev_tools_names} \\
+     \textbf{Libraries}{library_names}
+    }}
+ \end{itemize}
+
+
+%-------------------------------------------
+\end{document}
